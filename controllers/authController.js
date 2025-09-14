@@ -273,7 +273,7 @@ exports.register = async (req, res) => {
 
     // Send welcome email using Nodemailer
     if (process.env.EMAIL_USER) {
-      const verificationUrl = `http://localhost:5000/api/auth/verify/${verificationToken}`;
+      const verificationUrl = `https://leafcare-backend.onrender.com/api/auth/verify/${verificationToken}`;
       
       const welcomeEmailHtml = `
         <!DOCTYPE html>
@@ -350,7 +350,7 @@ exports.forgotPassword = async (req, res) => {
     await user.save({ validateBeforeSave: false });
 
     // Create reset url - point to backend endpoint
-    const resetUrl = `http://localhost:5000/api/auth/reset-password-form/${resetToken}`;
+    const resetUrl = `https://leafcare-backend.onrender.com/api/auth/reset-password-form/${resetToken}`;
 
     const resetEmailHtml = `
       <!DOCTYPE html>
