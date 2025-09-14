@@ -6,6 +6,7 @@ const {
   updateProfile,
   updatePassword,
   forgotPassword,
+  showResetPasswordForm,
   resetPassword,
   logout,
   refreshToken,
@@ -27,9 +28,16 @@ const router = express.Router();
 router.post('/register', validateRegister, register);
 router.post('/login', validateLogin, login);
 router.post('/forgotpassword', validateEmail, forgotPassword);
-router.put('/resetpassword/:resettoken', validatePasswordReset, resetPassword);
-router.post('/refresh', refreshToken);
+
+// Password reset routes - HTML responses
+router.get('/reset-password-form/:resettoken', showResetPasswordForm);
+router.post('/reset-password/:resettoken', resetPassword);
+
+// Email verification route - HTML response
 router.get('/verify/:token', verifyEmail);
+
+// Other routes
+router.post('/refresh', refreshToken);
 
 // Protected routes
 router.get('/me', protect, getMe);
